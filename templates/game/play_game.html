@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+  <h2>Гра №{{ game.id }}</h2>
+  <p>
+    <a href="{% url 'index' %}">Повернутися на головну</a>
+  </p>
+
+  <hr>
+  {% if game.is_finished %}
+    <div class="alert alert-success mt-3">
+      Вітаємо! Ви вгадали число!
+    </div>
+  {% else %}
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Надіслати</button>
+    </form>
+  {% endif %}
+
+  <h4>Історія ходів</h4>
+  {% if tries %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Хід</th>
+          <th>Бики</th>
+          <th>Корови</th>
+          <th>Час</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for t in tries %}
+          <tr>
+            <td>{{ t.guess }}</td>
+            <td>{{ t.bulls }}</td>
+            <td>{{ t.cows }}</td>
+            <td>{{ t.created_at|date:"H:i:s" }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Поки немає жодного ходу.</p>
+  {% endif %}
+{% endblock %}
