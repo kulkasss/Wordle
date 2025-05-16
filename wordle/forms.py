@@ -1,6 +1,6 @@
 from django import forms
 
-from bulls_and_cows.models import Try
+from wordle.models import Try
 
 
 class TryForm(forms.ModelForm):
@@ -10,6 +10,6 @@ class TryForm(forms.ModelForm):
         labels = {"guess": "Ваш хід"}
         widget = {
             "guess": forms.NumberInput(
-                attrs={"class": "form-control", "placeholder": "Введіть 4-значне число"}
+                attrs={"class": "form-control", "placeholder": "Введіть слово з 5 букв"}
             )
         }
