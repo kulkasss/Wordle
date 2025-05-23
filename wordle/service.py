@@ -5,19 +5,22 @@ from .models import Game, Try
 
 class GameService:
     @staticmethod
-    def generate_word():
-        digits = random.sample(range(10), 4)
-        if digits[0] == 0:
-            digits[0], digits[1] = digits[1], digits[0]
-        return int("".join(map(str, digits)))
 
+    def generate_word_from_file(filtered_ukr_nouns.txt):
+        with open(filtered_ukr_nouns.txt, 'r', encoding='utf-8') as file:
+            words = [line.strip() for line in file if len(line.strip()) == 5]
+
+        if not words:
+            raise ValueError("У файлі немає слів з 5 літерами.")
+
+        return random.choice(words)
     @staticmethod
     def evaluate_guess(letter, guess):
         word_str = str(letter)
         guess_str = str(guess)
 
         green = 0
-        for i in range(4):
+        for i in range(5):
             if word_str[i] == guess_str[i]:
                 green += 1
 

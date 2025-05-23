@@ -13,7 +13,7 @@ class TryInline(admin.TabularInline):
 # Налаштування адміністрування для гри
 class GameAdmin(admin.ModelAdmin):
     # Список стовпців, які відображаються на сторінці списку
-    list_display = ("user", "number", "tries_count", "is_finished", "created_at")
+    list_display = ("user", "word", "tries_count", "is_finished", "created_at")
     # Фільтри за користувачем і завершеністю гри
     list_filter = ("user",)
     # Поля для пошуку

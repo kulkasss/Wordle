@@ -2,8 +2,11 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.db import models
 
+
 class Word(models.Model):
-    word = models.CharField(maxlenth=5, unique=True)
+    word = models.CharField(max_length=5, unique=True)
+
+
 class Game(models.Model):
     user = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="games", verbose_name="Користувач"
@@ -22,7 +25,7 @@ class Game(models.Model):
     @property
     @admin.display(boolean=True, description='Завершено')
     def is_finished(self):
-        return self.tries.filter(bulls=4).exists()
+        return self.tries.filter(green=5).exists()
 
     @property
     @admin.display(description='Кількість спроб')
@@ -35,7 +38,7 @@ class Try(models.Model):
         Game, on_delete=models.CASCADE, related_name="tries", verbose_name="Гра"
     )
     guess = models.CharField(
-        "Хід", maxlength=5
+        "Хід", max_length=5
     )
     green = models.PositiveIntegerField("Зелені")
     yellow = models.PositiveIntegerField("Жовті")
