@@ -1,19 +1,15 @@
 import random
 
 from .models import Game, Try
-
+from django.conf import settings
 
 class GameService:
     @staticmethod
 
-    def generate_word_from_file(filtered_ukr_nouns.txt):
-        with open(filtered_ukr_nouns.txt, 'r', encoding='utf-8') as file:
-            words = [line.strip() for line in file if len(line.strip()) == 5]
-
-        if not words:
-            raise ValueError("У файлі немає слів з 5 літерами.")
-
-        return random.choice(words)
+    def random_word():
+        with open(f"{settings.BASE_DIR}/filtered_ukr_nouns.txt", "r") as file:
+            read_content = file.read()
+            return random.choice(read_content)
     @staticmethod
     def evaluate_guess(letter, guess):
         word_str = str(letter)
