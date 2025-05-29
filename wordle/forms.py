@@ -8,8 +8,6 @@ class TryForm(forms.ModelForm):
         model = Try
         fields = ["guess"]
         labels = {"guess": "Ваш хід"}
-        widget = {
-            "guess": forms.NumberInput(
-                attrs={"class": "form-control", "placeholder": "Введіть слово з 5 букв"}
-            )
-        }
+        widget = dict(guess=forms.TextInput(
+            attrs={"class": "form-control", "placeholder": "Введіть слово з 5 букв"}
+        ))

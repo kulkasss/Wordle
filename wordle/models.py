@@ -12,7 +12,6 @@ class Game(models.Model):
         User, on_delete=models.CASCADE, related_name="games", verbose_name="Користувач"
     )
     word = models.CharField("Загадане слово", max_length=5)
-    green = models.CharField(max_length=5)
     created_at = models.DateTimeField("Дата створення", auto_now_add=True)
 
     class Meta:

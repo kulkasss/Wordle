@@ -17,7 +17,7 @@ class GameAdmin(admin.ModelAdmin):
     # Фільтри за користувачем і завершеністю гри
     list_filter = ("user",)
     # Поля для пошуку
-    search_fields = ("user__username", "number")
+    search_fields = ("user__username", "word")
     # Відображення спроб гри в адмінці
     inlines = [TryInline]
     # Ієрархія за датою
